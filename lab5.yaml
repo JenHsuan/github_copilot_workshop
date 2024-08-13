@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: Game API
+  version: 1.0.0
+paths:
+  /game:
+    post:
+      summary: Play a game
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                player:
+                  type: string
+                  enum: ['剪刀', '石頭', '布', '蜥蜴', '史波克']
+              required:
+                - player
+      responses:
+        '200':
+          description: Game result
+          content:
+            text/plain:
+              schema:
+                type: string
+                enum: ['平手', '你輸了', '你贏了']
+        '400':
+          description: Invalid input
